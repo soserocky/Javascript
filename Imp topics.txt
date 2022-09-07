@@ -1,0 +1,14 @@
+-Event Loops (done)
+-Execution of JS code in JS runtime environment (done)
+-Closures (done)
+-IFFE (done)
+-Promise (done)
+-'this' keyword (done)
+-OOPS: prototype, inheritance, polymorphism, private, public, static, get, set (done)
+-apply, call, bind (done)
+-Currying
+-Arrays, map, filter, splice (done)
+-const, let, var (done)
+-Object.create, Object.assign
+-EventBubbling, EventDelegation
+-Debouncing
