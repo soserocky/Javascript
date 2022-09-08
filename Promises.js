@@ -86,9 +86,9 @@ func1()
   .catch((err) => console.log(err));
 
 let p = new Promise((resolve, reject) => {
-  // setTimeout(() => {
-  resolve('Promise is resolved');
-  // }, 2000);
+  setTimeout(() => {
+    resolve('Promise is resolved');
+  }, 2000);
 });
 
 console.log(p);
