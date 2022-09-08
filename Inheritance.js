@@ -27,7 +27,14 @@ PermanentEmployee.prototype.constructor = PermanentEmployee;
 //On the line just above, we had to reset the constructor property on the PermanentEmployee.prototype back to the
 //PermanentEmployee function because when we do PermanentEmployee.prototype = Object.create(Employee.prototype);,
 //the constructor property on the PermanentEmployee.prototype is overwritten to point to the Employee function.
-//Not sure if it is a bug or it was intentionally implemented this way, but, that is how javascript works.
+//The above is an understandable way of working of javascript.
+
+//When we create an object using the "new" keyword, the javascript engine sets the "constructor" property on
+//the "prototype" object to the constructor function that is called.
+//But, when we create using "Object.create()", javascript engine essentially creates an object and
+//sets the "prototype" property of the constructor function (PermanentEmployee function) to the newly created object.
+//Hence, the "constructor" property of the newly created object is borrowed from its parent, which points to its
+//constructor function(Employee function).
 
 const ContractorEmployee = function (n, y) {
   Employee.call(this, n, y, 'c');

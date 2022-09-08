@@ -14,76 +14,76 @@
 //Arguments may also be passed in the "resolve" or "reject" calls that would then be passed to the next function (in the case
 //of "resolve") and to the "catch" block(in case of "reject")
 
-// function PromiseFunc() {
-//   return new Promise((resolve, reject) => {
-//     const error = false;
-//     if (!error) {
-//       setTimeout(() => {
-//         resolve({ msg1: 'error flag', msg2: 'is false' });
-//       }, 4000);
-//     } else {
-//       setTimeout(() => {
-//         reject('error flag is true');
-//       }, 4000);
-//     }
-//   });
-// }
+function PromiseFunc() {
+  return new Promise((resolve, reject) => {
+    const error = false;
+    if (!error) {
+      setTimeout(() => {
+        resolve({ msg1: 'error flag', msg2: 'is false' });
+      }, 4000);
+    } else {
+      setTimeout(() => {
+        reject('error flag is true');
+      }, 4000);
+    }
+  });
+}
 
-// PromiseFunc()
-//   .then((obj) => console.log('Promise fulfilled: ' + obj.msg1 + ' ' + obj.msg2))
-//   .catch((error) => console.log('Sorry, promise not fulfilled: ' + error));
+PromiseFunc()
+  .then((obj) => console.log('Promise fulfilled: ' + obj.msg1 + ' ' + obj.msg2))
+  .catch((error) => console.log('Sorry, promise not fulfilled: ' + error));
 
-// let students = [{ id: 1, name: 'sabya' }];
+let students = [{ id: 1, name: 'sabya' }];
 
-// function EnrollStudent(id, name) {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       students.push({ id: id, name: name });
-//       resolve(students);
-//     }, 2000);
-//   });
-// }
+function EnrollStudent(id, name) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      students.push({ id: id, name: name });
+      resolve(students);
+    }, 2000);
+  });
+}
 
-// function PrintStudents(s) {
-//   s.forEach((x) => console.log(x.id + '-' + x.name + ', '));
-// }
+function PrintStudents(s) {
+  s.forEach((x) => console.log(x.id + '-' + x.name + ', '));
+}
 
-// EnrollStudent(2, 'ravish').then(PrintStudents).catch();
+EnrollStudent(2, 'ravish').then(PrintStudents).catch();
 
-// function func1() {
-//   return new Promise((resolve, reject) => {
-//     console.log('func1 ran');
-//     resolve();
-//   });
-// }
-// function func2() {
-//   return new Promise((resolve, reject) => {
-//     console.log('func2 ran');
-//     resolve('hello from func 2');
-//   });
-// }
-// function func3(arg) {
-//   return new Promise((resolve, reject) => {
-//     try {
-//       console.log(arg);
-//       console.log('func3 ran with some issues');
-//       throw new Error('cant run functions further');
-//     } catch (err) {
-//       reject(err.message);
-//     }
-//   });
-// }
-// function func4() {
-//   return new Promise((resolve, reject) => {
-//     console.log('func4 ran');
-//     resolve();
-//   });
-// }
-// func1()
-//   .then(func2)
-//   .then(func3)
-//   .then(func4)
-//   .catch((err) => console.log(err));
+function func1() {
+  return new Promise((resolve, reject) => {
+    console.log('func1 ran');
+    resolve();
+  });
+}
+function func2() {
+  return new Promise((resolve, reject) => {
+    console.log('func2 ran');
+    resolve('hello from func 2');
+  });
+}
+function func3(arg) {
+  return new Promise((resolve, reject) => {
+    try {
+      console.log(arg);
+      console.log('func3 ran with some issues');
+      throw new Error('cant run functions further');
+    } catch (err) {
+      reject(err.message);
+    }
+  });
+}
+function func4() {
+  return new Promise((resolve, reject) => {
+    console.log('func4 ran');
+    resolve();
+  });
+}
+func1()
+  .then(func2)
+  .then(func3)
+  .then(func4)
+  .catch((err) => console.log(err));
 
 let p = new Promise((resolve, reject) => {
   // setTimeout(() => {
