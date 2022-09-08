@@ -59,23 +59,23 @@
 //   `setTimeout being run after ${(d2.getTime() - d1.getTime()) / 1000} seconds`
 // );
 
-function f() {
-  let i = 1;
-  setTimeout(() => console.log('i = 1', i), i * 1000);
+// function f() {
+//   let i = 1;
+//   setTimeout(() => console.log('i = 1', i), i * 1000);
 
-  i = 2;
-  setTimeout(() => console.log('i = 2', i), i * 1000);
+//   i = 2;
+//   setTimeout(() => console.log('i = 2', i), i * 1000);
 
-  i = 3;
-  setTimeout(() => console.log('i = 3', i), i * 1000);
+//   i = 3;
+//   setTimeout(() => console.log('i = 3', i), i * 1000);
 
-  i = 4;
-  setTimeout(() => console.log('i = 4', i), i * 1000);
+//   i = 4;
+//   setTimeout(() => console.log('i = 4', i), i * 1000);
 
-  i = 5;
-  setTimeout(() => console.log('i = 5', i), i * 1000);
+//   i = 5;
+//   setTimeout(() => console.log('i = 5', i), i * 1000);
 
-  console.log('Hi');
-}
+//   console.log('Hi');
+// }
 
-f();
+// f();
