@@ -9,46 +9,49 @@
 //Note:
 //if one of the functions(in the promise chain) contains a try...catch block and an error occurs
 //then the error would be handled in the "catch" block of the function and would not be transmitted to the
-//"catch" block of the promise chain.
+//"catch" block of the promise chain, unless "reject" is called explicitly in the "catch" block of the .
 //An explicit call of either "resolve" or "reject" is necessary to either continue with or terminate the promise "chain".
 //Arguments may also be passed in the "resolve" or "reject" calls that would then be passed to the next function (in the case
 //of "resolve") and to the "catch" block(in case of "reject")
+//Very Important Note: "then" blocks could be continued after "catch" blocks and if any function before the "catch" block
+//"rejects", then the execution would land up in the "catch" block and the "then" blocks after the "catch" block would
+//continue to be executed. In case of a "resolve" the "then" blocks would continue to be executed normally.
 
-function PromiseFunc() {
-  return new Promise((resolve, reject) => {
-    const error = false;
-    if (!error) {
-      setTimeout(() => {
-        resolve({ msg1: 'error flag', msg2: 'is false' });
-      }, 4000);
-    } else {
-      setTimeout(() => {
-        reject('error flag is true');
-      }, 4000);
-    }
-  });
-}
+// function PromiseFunc() {
+//   return new Promise((resolve, reject) => {
+//     const error = false;
+//     if (!error) {
+//       setTimeout(() => {
+//         resolve({ msg1: 'error flag', msg2: 'is false' });
+//       }, 4000);
+//     } else {
+//       setTimeout(() => {
+//         reject('error flag is true');
+//       }, 4000);
+//     }
+//   });
+// }
 
-PromiseFunc()
-  .then((obj) => console.log('Promise fulfilled: ' + obj.msg1 + ' ' + obj.msg2))
-  .catch((error) => console.log('Sorry, promise not fulfilled: ' + error));
+// PromiseFunc()
+//   .then((obj) => console.log('Promise fulfilled: ' + obj.msg1 + ' ' + obj.msg2))
+//   .catch((error) => console.log('Sorry, promise not fulfilled: ' + error));
 
-let students = [{ id: 1, name: 'sabya' }];
+// let students = [{ id: 1, name: 'sabya' }];
 
-function EnrollStudent(id, name) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      students.push({ id: id, name: name });
-      resolve(students);
-    }, 2000);
-  });
-}
+// function EnrollStudent(id, name) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       students.push({ id: id, name: name });
+//       resolve(students);
+//     }, 2000);
+//   });
+// }
 
-function PrintStudents(s) {
-  s.forEach((x) => console.log(x.id + '-' + x.name + ', '));
-}
+// function PrintStudents(s) {
+//   s.forEach((x) => console.log(x.id + '-' + x.name + ', '));
+// }
 
-EnrollStudent(2, 'ravish').then(PrintStudents).catch();
+// EnrollStudent(2, 'ravish').then(PrintStudents).catch();
 
 function func1() {
   return new Promise((resolve, reject) => {
@@ -85,10 +88,43 @@ func1()
   .then(func4)
   .catch((err) => console.log(err));
 
-let p = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve('Promise is resolved');
-  }, 2000);
-});
+// let p = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve('Promise is resolved');
+//   }, 2000);
+// });
 
-console.log(p);
+// console.log(p);
+
+function job() {
+  return new Promise(function (resolve, reject) {
+    resolve();
+  });
+}
+
+let promise = job();
+
+promise
+  .then(function () {
+    console.log('Success 1');
+  })
+  .then(function () {
+    console.log('Success 2');
+  })
+  .then(function () {
+    console.log('Success 3');
+  })
+  .catch(function () {
+    console.log('Error 1');
+  })
+
+  .then(function () {
+    console.log('Success 4');
+  })
+  .then(function () {
+    console.log('Success 5');
+    throw new Error();
+  })
+  .catch(function () {
+    console.log('Error 2');
+  });
